@@ -15,13 +15,11 @@ runs:
       npm install
   - uses: kotewar/cache/restore@main
     id: cache-restore
-   shell: bash
     with:
       path: ${{ github.workspace }}/node_modules
       key: cache-key-1
   - uses: kotewar/cache/save@main
     id: cache-save
-    shell: bash
     with:
       path: ${{ github.workspace }}/node_modules
       key: cache-key-1
