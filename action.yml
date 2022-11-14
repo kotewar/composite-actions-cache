@@ -4,20 +4,24 @@ runs:
   using: "composite"
   steps:
   - name: Get current date
+    shell: bash
     id: date
     run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
   - uses: actions/checkout@v2
   - name: NPM install
+    shell: bash
     run: |
       pwd
       npm install
   - uses: kotewar/cache/restore@main
     id: cache-restore
+   shell: bash
     with:
       path: ${{ github.workspace }}/node_modules
       key: cache-key-1
   - uses: kotewar/cache/save@main
     id: cache-save
+    shell: bash
     with:
       path: ${{ github.workspace }}/node_modules
       key: cache-key-1
