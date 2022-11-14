@@ -3,24 +3,21 @@ description: 'Cache action embedded inside composite action'
 runs:
   using: "composite"
   steps:
-    - name: Build Test
-    runs-on:  ubuntu-latest
-    steps:
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
-    - uses: actions/checkout@v2
-    - name: NPM install
-      run: |
-        pwd
-        npm install
-    - uses: kotewar/cache/restore@main
-      id: cache-restore
-      with:
-        path: ${{ github.workspace }}/node_modules
-        key: cache-key-1
-    - uses: kotewar/cache/save@main
-      id: cache-save
-      with:
-        path: ${{ github.workspace }}/node_modules
-        key: cache-key-1
+  - name: Get current date
+    id: date
+    run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
+  - uses: actions/checkout@v2
+  - name: NPM install
+    run: |
+      pwd
+      npm install
+  - uses: kotewar/cache/restore@main
+    id: cache-restore
+    with:
+      path: ${{ github.workspace }}/node_modules
+      key: cache-key-1
+  - uses: kotewar/cache/save@main
+    id: cache-save
+    with:
+      path: ${{ github.workspace }}/node_modules
+      key: cache-key-1
