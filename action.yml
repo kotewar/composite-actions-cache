@@ -13,12 +13,12 @@ runs:
     run: |
       pwd
       npm install
-  - uses: actions/cache/restore@700-actionscache-granular-cache-control
+  - uses: actions/cache/restore@v3
     id: cache-restore
     with:
       path: ${{ github.workspace }}/node_modules
       key: cache-key-1
-  - uses: actions/cache/save@700-actionscache-granular-cache-control
+  - uses: actions/cache/save@v3
     id: cache-save
     with:
       path: ${{ github.workspace }}/node_modules
